@@ -1,42 +1,41 @@
 <?php
 /*
- * Genres
-* genres
-* Genre
-* genre
-*/
-
-class GenresController extends AppController {
+ * SIs	
+ * sis
+ * SI
+ * si
+ */
+class SIsController extends AppController {
 	public $helpers = array('Html', 'Form');
 
 	public function index() {
-		$this->set('genres', $this->Genre->find('all'));
+		$this->set('sis', $this->SI->find('all'));
 	}
 	
 	public function view($id = null) {
 		if (!$id) {
-			throw new NotFoundException(__('Invalid genre'));
+			throw new NotFoundException(__('Invalid si'));
 		}
 	
-		$genre = $this->Genre->findById($id);
-		if (!$genre) {
-			throw new NotFoundException(__('Invalid genre'));
+		$si = $this->SI->findById($id);
+		if (!$si) {
+			throw new NotFoundException(__('Invalid si'));
 		}
-		$this->set('genre', $genre);
+		$this->set('si', $si);
 	}
 
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->Genre->create();
+			$this->SI->create();
 			
-			$this->request->data['Genre']['created_at'] = Utils::get_CurrentTime();
-			$this->request->data['Genre']['updated_at'] = Utils::get_CurrentTime();
+			$this->request->data['SI']['created_at'] = Utils::get_CurrentTime();
+			$this->request->data['SI']['updated_at'] = Utils::get_CurrentTime();
 			
-			if ($this->Genre->save($this->request->data)) {
-				$this->Session->setFlash(__('Your genres has been saved.'));
+			if ($this->SI->save($this->request->data)) {
+				$this->Session->setFlash(__('Your sis has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			}
-			$this->Session->setFlash(__('Unable to add your genres.'));
+			$this->Session->setFlash(__('Unable to add your sis.'));
 		}
 	}
 
@@ -47,13 +46,13 @@ class GenresController extends AppController {
 	
 		******************************/
 		if (!$id) {
-			throw new NotFoundException(__('Invalid genre id'));
+			throw new NotFoundException(__('Invalid si id'));
 		}
 	
-		$genre = $this->Genre->findById($id);
+		$si = $this->SI->findById($id);
 	
-		if (!$genre) {
-			throw new NotFoundException(__("Can't find the genre. id = %d", $id));
+		if (!$si) {
+			throw new NotFoundException(__("Can't find the si. id = %d", $id));
 		}
 	
 		/******************************
@@ -61,16 +60,16 @@ class GenresController extends AppController {
 		delete
 	
 		******************************/
-		if ($this->Genre->delete($id)) {
-			// 		if ($this->Genre->save($this->request->data)) {
+		if ($this->SI->delete($id)) {
+			// 		if ($this->SI->save($this->request->data)) {
 	
 			$this->Session->setFlash(__(
-					"Genre deleted => %s",
-					$genre['Genre']['name']));
+					"SI deleted => %s",
+					$si['SI']['name']));
 	
 			return $this->redirect(
 					array(
-							'controller' => 'genres',
+							'controller' => 'sis',
 							'action' => 'index'
 	
 					));
@@ -78,14 +77,14 @@ class GenresController extends AppController {
 		} else {
 	
 			$this->Session->setFlash(
-					__("Genre can't be deleted => %s",
-							$genre['Genre']['name']));
+					__("SI can't be deleted => %s",
+							$si['SI']['name']));
 	
 			// 			$page_num = _get_Page_from_Id($id - 1);
 	
 			return $this->redirect(
 					array(
-							'controller' => 'genres',
+							'controller' => 'sis',
 							'action' => 'view',
 							$id
 					));
@@ -166,15 +165,15 @@ class GenresController extends AppController {
 	delete_all() {
 	
 		//REF http://book.cakephp.org/2.0/ja/core-libraries/helpers/html.html
-		if ($this->Genre->deleteAll(array('Genre.id >=' => 1))) {
+		if ($this->SI->deleteAll(array('SI.id >=' => 1))) {
 			// 		if ($this->Category->deleteAll(array('id >=' => 1))) {
 	
-			$this->Session->setFlash(__('Genres all deleted'));
+			$this->Session->setFlash(__('SIs all deleted'));
 			return $this->redirect(array('action' => 'index'));
 	
 		} else {
 	
-			$this->Session->setFlash(__('Genres not deleted'));
+			$this->Session->setFlash(__('SIs not deleted'));
 			return $this->redirect(array('action' => 'index'));
 	
 		}

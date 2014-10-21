@@ -1,42 +1,42 @@
 <?php
 /*
- * Genres
-* genres
-* Genre
-* genre
+ * PurHistorys
+* purhistorys
+* PurHistory
+* purhistory
 */
 
-class GenresController extends AppController {
+class PurHistorysController extends AppController {
 	public $helpers = array('Html', 'Form');
 
 	public function index() {
-		$this->set('genres', $this->Genre->find('all'));
+		$this->set('purhistorys', $this->PurHistory->find('all'));
 	}
 	
 	public function view($id = null) {
 		if (!$id) {
-			throw new NotFoundException(__('Invalid genre'));
+			throw new NotFoundException(__('Invalid purhistory'));
 		}
 	
-		$genre = $this->Genre->findById($id);
-		if (!$genre) {
-			throw new NotFoundException(__('Invalid genre'));
+		$purhistory = $this->PurHistory->findById($id);
+		if (!$purhistory) {
+			throw new NotFoundException(__('Invalid purhistory'));
 		}
-		$this->set('genre', $genre);
+		$this->set('purhistory', $purhistory);
 	}
 
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->Genre->create();
+			$this->PurHistory->create();
 			
-			$this->request->data['Genre']['created_at'] = Utils::get_CurrentTime();
-			$this->request->data['Genre']['updated_at'] = Utils::get_CurrentTime();
+			$this->request->data['PurHistory']['created_at'] = Utils::get_CurrentTime();
+			$this->request->data['PurHistory']['updated_at'] = Utils::get_CurrentTime();
 			
-			if ($this->Genre->save($this->request->data)) {
-				$this->Session->setFlash(__('Your genres has been saved.'));
+			if ($this->PurHistory->save($this->request->data)) {
+				$this->Session->setFlash(__('Your purhistorys has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			}
-			$this->Session->setFlash(__('Unable to add your genres.'));
+			$this->Session->setFlash(__('Unable to add your purhistorys.'));
 		}
 	}
 
@@ -47,13 +47,13 @@ class GenresController extends AppController {
 	
 		******************************/
 		if (!$id) {
-			throw new NotFoundException(__('Invalid genre id'));
+			throw new NotFoundException(__('Invalid purhistory id'));
 		}
 	
-		$genre = $this->Genre->findById($id);
+		$purhistory = $this->PurHistory->findById($id);
 	
-		if (!$genre) {
-			throw new NotFoundException(__("Can't find the genre. id = %d", $id));
+		if (!$purhistory) {
+			throw new NotFoundException(__("Can't find the purhistory. id = %d", $id));
 		}
 	
 		/******************************
@@ -61,16 +61,16 @@ class GenresController extends AppController {
 		delete
 	
 		******************************/
-		if ($this->Genre->delete($id)) {
-			// 		if ($this->Genre->save($this->request->data)) {
+		if ($this->PurHistory->delete($id)) {
+			// 		if ($this->PurHistory->save($this->request->data)) {
 	
 			$this->Session->setFlash(__(
-					"Genre deleted => %s",
-					$genre['Genre']['name']));
+					"PurHistory deleted => %s",
+					$purhistory['PurHistory']['name']));
 	
 			return $this->redirect(
 					array(
-							'controller' => 'genres',
+							'controller' => 'purhistorys',
 							'action' => 'index'
 	
 					));
@@ -78,14 +78,14 @@ class GenresController extends AppController {
 		} else {
 	
 			$this->Session->setFlash(
-					__("Genre can't be deleted => %s",
-							$genre['Genre']['name']));
+					__("PurHistory can't be deleted => %s",
+							$purhistory['PurHistory']['name']));
 	
 			// 			$page_num = _get_Page_from_Id($id - 1);
 	
 			return $this->redirect(
 					array(
-							'controller' => 'genres',
+							'controller' => 'purhistorys',
 							'action' => 'view',
 							$id
 					));
@@ -166,15 +166,15 @@ class GenresController extends AppController {
 	delete_all() {
 	
 		//REF http://book.cakephp.org/2.0/ja/core-libraries/helpers/html.html
-		if ($this->Genre->deleteAll(array('Genre.id >=' => 1))) {
+		if ($this->PurHistory->deleteAll(array('PurHistory.id >=' => 1))) {
 			// 		if ($this->Category->deleteAll(array('id >=' => 1))) {
 	
-			$this->Session->setFlash(__('Genres all deleted'));
+			$this->Session->setFlash(__('PurHistorys all deleted'));
 			return $this->redirect(array('action' => 'index'));
 	
 		} else {
 	
-			$this->Session->setFlash(__('Genres not deleted'));
+			$this->Session->setFlash(__('PurHistorys not deleted'));
 			return $this->redirect(array('action' => 'index'));
 	
 		}
