@@ -1,3 +1,11 @@
+<!-- 
+genres
+genre
+Genres
+Genre
+
+-->
+
 <?php foreach ($genres as $genre): ?>
 <tr>
 		<td><?php echo $genre['Genre']['id']; ?></td>

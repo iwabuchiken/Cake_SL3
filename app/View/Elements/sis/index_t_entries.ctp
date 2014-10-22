@@ -1,20 +1,26 @@
-<?php foreach ($genres as $genre): ?>
+<!-- 
+sis
+si
+Sis
+Si
+
+-->
+
+<?php foreach ($sis as $si): ?>
 <tr>
-		<td><?php echo $genre['Genre']['id']; ?></td>
+		<td><?php echo $si['Si']['id']; ?></td>
 		<td>
-			<?php echo $this->Html->link($genre['Genre']['name'],
+			<?php echo $this->Html->link($si['Si']['name'],
 							array(
-								'controller' => 'genres', 
+								'controller' => 'sis', 
 								'action' => 'view', 
-								$genre['Genre']['id'])
+								$si['Si']['id'])
 							); ?>
 		</td>
 		
-		<td><?php echo $genre['Genre']['code']; ?></td>
-		
-		<td><?php echo $genre['Genre']['created_at']; ?></td>
-		<td><?php echo $genre['Genre']['updated_at']; ?></td>
+		<td><?php echo $si['Si']['created_at']; ?></td>
+		<td><?php echo $si['Si']['updated_at']; ?></td>
 		
 </tr>
 <?php endforeach; ?>
-<?php unset($genre); ?>
+<?php unset($si); ?>

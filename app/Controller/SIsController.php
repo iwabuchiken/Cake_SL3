@@ -1,15 +1,17 @@
 <?php
 /*
- * SIs	
+ * Sis	
  * sis
- * SI
+ * Si
  * si
  */
-class SIsController extends AppController {
+// class SIsController extends AppController {
+class SisController extends AppController {
+// class SisController extends AppController {
 	public $helpers = array('Html', 'Form');
 
 	public function index() {
-		$this->set('sis', $this->SI->find('all'));
+		$this->set('sis', $this->Si->find('all'));
 	}
 	
 	public function view($id = null) {
@@ -17,7 +19,7 @@ class SIsController extends AppController {
 			throw new NotFoundException(__('Invalid si'));
 		}
 	
-		$si = $this->SI->findById($id);
+		$si = $this->Si->findById($id);
 		if (!$si) {
 			throw new NotFoundException(__('Invalid si'));
 		}
@@ -26,12 +28,12 @@ class SIsController extends AppController {
 
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->SI->create();
+			$this->Si->create();
 			
-			$this->request->data['SI']['created_at'] = Utils::get_CurrentTime();
-			$this->request->data['SI']['updated_at'] = Utils::get_CurrentTime();
+			$this->request->data['Si']['created_at'] = Utils::get_CurrentTime();
+			$this->request->data['Si']['updated_at'] = Utils::get_CurrentTime();
 			
-			if ($this->SI->save($this->request->data)) {
+			if ($this->Si->save($this->request->data)) {
 				$this->Session->setFlash(__('Your sis has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 			}
@@ -49,7 +51,7 @@ class SIsController extends AppController {
 			throw new NotFoundException(__('Invalid si id'));
 		}
 	
-		$si = $this->SI->findById($id);
+		$si = $this->Si->findById($id);
 	
 		if (!$si) {
 			throw new NotFoundException(__("Can't find the si. id = %d", $id));
@@ -60,12 +62,12 @@ class SIsController extends AppController {
 		delete
 	
 		******************************/
-		if ($this->SI->delete($id)) {
-			// 		if ($this->SI->save($this->request->data)) {
+		if ($this->Si->delete($id)) {
+			// 		if ($this->Si->save($this->request->data)) {
 	
 			$this->Session->setFlash(__(
-					"SI deleted => %s",
-					$si['SI']['name']));
+					"Si deleted => %s",
+					$si['Si']['name']));
 	
 			return $this->redirect(
 					array(
@@ -77,8 +79,8 @@ class SIsController extends AppController {
 		} else {
 	
 			$this->Session->setFlash(
-					__("SI can't be deleted => %s",
-							$si['SI']['name']));
+					__("Si can't be deleted => %s",
+							$si['Si']['name']));
 	
 			// 			$page_num = _get_Page_from_Id($id - 1);
 	
@@ -165,15 +167,15 @@ class SIsController extends AppController {
 	delete_all() {
 	
 		//REF http://book.cakephp.org/2.0/ja/core-libraries/helpers/html.html
-		if ($this->SI->deleteAll(array('SI.id >=' => 1))) {
+		if ($this->Si->deleteAll(array('Si.id >=' => 1))) {
 			// 		if ($this->Category->deleteAll(array('id >=' => 1))) {
 	
-			$this->Session->setFlash(__('SIs all deleted'));
+			$this->Session->setFlash(__('Sis all deleted'));
 			return $this->redirect(array('action' => 'index'));
 	
 		} else {
 	
-			$this->Session->setFlash(__('SIs not deleted'));
+			$this->Session->setFlash(__('Sis not deleted'));
 			return $this->redirect(array('action' => 'index'));
 	
 		}

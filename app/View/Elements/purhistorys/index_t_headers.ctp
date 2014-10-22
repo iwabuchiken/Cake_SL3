@@ -8,8 +8,8 @@ Genre
 
 <tr>
 		<th>Id</th>
-		<th>Name</th>
-		<th>Code</th>
+		<th>Store</th>
+		<th>Items</th>
 		<th>Created at</th>
 		<th>updated at</th>
 		

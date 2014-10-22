@@ -4,6 +4,7 @@ sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_SL3\app\webroot\development.sqlite3
 .explain on
 .tables
 
+pragma table_info(sis);
 pragma table_info(pur_histories);
 
 .exit
@@ -30,7 +31,7 @@ CREATE TABLE pur_histories (
 	local_created_at	VARCHAR(30),
 	local_updated_at	VARCHAR(30),
 	
-	store_name	VARCHAR(30),
+	store_id	INTEGER,
 	pur_date	VARCHAR(30),
 	items		VARCHAR(30),
 	
@@ -42,8 +43,6 @@ CREATE TABLE pur_histories (
 	
 );
 
-DROP TABLE sis;
-
 #			android.provider.BaseColumns._ID,	// 0
 #			"created_at", "modified_at",			// 1,2
 #			
@@ -51,6 +50,8 @@ DROP TABLE sis;
 #			"genre", "yomi", "num",				// 6,7,8
 #			
 #			"posted_at"							// 9
+
+DROP TABLE sis;
 
 CREATE TABLE sis (
 	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
@@ -61,11 +62,11 @@ CREATE TABLE sis (
 	local_created_at	VARCHAR(30),
 	local_updated_at	VARCHAR(30),
 	
-	store		VARCHAR(30),
+	store_id	INTEGER,
 	name		VARCHAR(30),
 	price		INTEGER,
 	
-	genre		VARCHAR(30),
+	genre_id	INTEGER,
 	yomi		VARCHAR(30),
 	num			INTEGER,
 
@@ -104,8 +105,6 @@ CREATE TABLE admins (
 [mysql(lollipop)]======================================
 #REF http://sql-info.de/mysql/examples/CREATE-TABLE-examples.html
 
-DROP TABLE pur_histories;
-
 #			android.provider.BaseColumns._ID,	// 0
 #			"created_at", "modified_at",		// 1,2
 #			
@@ -114,6 +113,8 @@ DROP TABLE pur_histories;
 #			"amount",							// 6
 #			"memo",								// 7
 #			"posted_at"							// 8
+
+DROP TABLE pur_histories;
 
 CREATE TABLE pur_histories (
 
@@ -125,7 +126,7 @@ CREATE TABLE pur_histories (
 	local_created_at	VARCHAR(30),
 	local_updated_at	VARCHAR(30),
 	
-	store_name	VARCHAR(30),
+	store_id	INTEGER,
 	pur_date	VARCHAR(30),
 	items		VARCHAR(30),
 	
@@ -137,8 +138,6 @@ CREATE TABLE pur_histories (
 	
 );
 
-DROP TABLE sis;
-
 #			android.provider.BaseColumns._ID,	// 0
 #			"created_at", "modified_at",			// 1,2
 #			
@@ -146,6 +145,8 @@ DROP TABLE sis;
 #			"genre", "yomi", "num",				// 6,7,8
 #			
 #			"posted_at"							// 9
+
+DROP TABLE sis;
 
 CREATE TABLE sis (
 	id			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -156,11 +157,11 @@ CREATE TABLE sis (
 	local_created_at	VARCHAR(30),
 	local_updated_at	VARCHAR(30),
 	
-	store		VARCHAR(30),
+	store_id	INTEGER,
 	name		VARCHAR(30),
 	price		INTEGER,
 	
-	genre		VARCHAR(30),
+	genre_id	INTEGER,
 	yomi		VARCHAR(30),
 	num			INTEGER,
 
