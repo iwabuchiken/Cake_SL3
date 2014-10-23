@@ -1,16 +1,32 @@
-<h1>Add Genre</h1>
+<!-- 
+
+PurHistory
+
+-->
+
+<h1>Add PurHistory</h1>
 <?php
 	
-	$opt_input = array(
+	$opt_input_store_id = array(
 				
-			'onmouseover' => 'this.select()',
-			'rows' => '3'
+			'onmouseover'	=> 'this.select()',
+			'rows' => '1',
+			'style'			=> 'width: 25%; background: wheat',
+			
 			
 	);
 
-	echo $this->Form->create('Genre');
-	echo $this->Form->input('name', $opt_input);
-	echo $this->Form->input('code', $opt_input);
-	echo $this->Form->end('Save Genre');
+	$opt_input_items = array(
+				
+			'onmouseover'	=> 'this.select()',
+			'rows' => '1',
+			'style'			=> 'width: 25%; background: lightsteelblue'
+			
+	);
+
+	echo $this->Form->create('PurHistory');
+	echo $this->Form->input('store_id', $opt_input_store_id);
+	echo $this->Form->input('items', $opt_input_items);
+	echo $this->Form->end('Save PurHistory');
 	
 ?>

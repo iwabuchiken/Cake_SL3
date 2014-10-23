@@ -8,14 +8,24 @@ PurHistory
 
 <?php foreach ($purhistorys as $purhistory): ?>
 <tr>
-		<td><?php echo $purhistory['PurHistory']['id']; ?></td>
 		<td>
-			<?php echo $this->Html->link($purhistory['PurHistory']['store_id'],
+			<?php 
+			
+				echo $this->Html->link($purhistory['PurHistory']['id'],
 							array(
 								'controller' => 'purhistorys', 
 								'action' => 'view', 
 								$purhistory['PurHistory']['id'])
-							); ?>
+							); 
+				
+			?>
+			
+		</td>
+		
+		<td>
+			<?php 
+				echo $purhistory['PurHistory']['store_id'];
+			?>
 		</td>
 		
 		<td><?php echo $purhistory['PurHistory']['items']; ?></td>

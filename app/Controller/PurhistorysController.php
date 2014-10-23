@@ -66,7 +66,7 @@ class PurHistorysController extends AppController {
 	
 			$this->Session->setFlash(__(
 					"PurHistory deleted => %s",
-					$purhistory['PurHistory']['name']));
+					$purhistory['PurHistory']['items']));
 	
 			return $this->redirect(
 					array(
@@ -79,7 +79,7 @@ class PurHistorysController extends AppController {
 	
 			$this->Session->setFlash(
 					__("PurHistory can't be deleted => %s",
-							$purhistory['PurHistory']['name']));
+							$purhistory['PurHistory']['items']));
 	
 			// 			$page_num = _get_Page_from_Id($id - 1);
 	
