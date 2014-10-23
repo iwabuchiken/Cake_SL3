@@ -24,7 +24,15 @@ PurHistory
 			
 	);
 
-	echo $this->Form->create('PurHistory');
+	//REF get http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#options-for-create
+	$opt_form = array(
+			
+				'url'	=> 'http://localhost/Cake_SL3/purhistorys/add_from_remote',
+				'type'	=> 'post'
+	);
+	
+	echo $this->Form->create('PurHistory', $opt_form);
+// 	echo $this->Form->create('PurHistory');
 	echo $this->Form->input('store_id', $opt_input_store_id);
 	echo $this->Form->input('items', $opt_input_items);
 	echo $this->Form->end('Save PurHistory');
