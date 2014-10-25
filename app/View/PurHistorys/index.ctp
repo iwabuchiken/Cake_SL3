@@ -24,7 +24,21 @@ purhistory
 							); 
 ?>
 
+<br>
+<br>
 
+<?php echo $this->Html->link(
+							'Delete all histories',
+							array(
+								'controller' => 'purhistorys',
+								'action' => 'delete_all'),
+							array(),
+							"Delete all?");
+?>
+
+<br>
+<br>
+			
 (<a href="#top">Top</a><a name="bottom"></a>)
 
 <?php 

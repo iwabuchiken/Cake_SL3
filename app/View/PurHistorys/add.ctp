@@ -27,7 +27,11 @@ PurHistory
 	//REF get http://book.cakephp.org/2.0/en/core-libraries/helpers/form.html#options-for-create
 	$opt_form = array(
 			
-				'url'	=> 'http://localhost/Cake_SL3/purhistorys/add_from_remote',
+				'url'	=> "http://benfranklin.chips.jp/cake_apps".
+							"/Cake_SL3/purhistorys/".
+							"add_from_remote",
+			
+// 				'url'	=> 'http://localhost/Cake_SL3/purhistorys/add_from_remote',
 				'type'	=> 'post'
 	);
 	
