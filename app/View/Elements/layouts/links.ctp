@@ -26,6 +26,17 @@
 			
 		</td>
 	
+		<td>
+		
+			<?php echo $this->Html->link(
+								'Stores',
+								array('controller' => 'stores', 
+										'action' => 'index'),
+								array('class' => "button"));
+			?>
+			
+		</td>
+	
 	</tr>
 
 </table>

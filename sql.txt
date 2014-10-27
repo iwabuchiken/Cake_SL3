@@ -5,11 +5,28 @@ sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_SL3\app\webroot\development.sqlite3
 .tables
 
 pragma table_info(sis);
+pragma table_info(stores);
 pragma table_info(pur_histories);
 
 .exit
 
 [sqlite3]======================================
+DROP TABLE stores;
+
+CREATE TABLE stores (
+
+	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+
+	local_id	INTEGER,
+	local_created_at	VARCHAR(30),
+	local_updated_at	VARCHAR(30),
+	
+	name		VARCHAR(30)
+
+);
+
 #			android.provider.BaseColumns._ID,	// 0
 #			"created_at", "modified_at",		// 1,2
 #			
@@ -103,6 +120,23 @@ CREATE TABLE admins (
 );
 
 [mysql(lollipop)]======================================
+
+DROP TABLE stores;
+
+CREATE TABLE stores (
+
+	id			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+
+	local_id	INTEGER,
+	local_created_at	VARCHAR(30),
+	local_updated_at	VARCHAR(30),
+	
+	name		VARCHAR(30)
+
+);
+
 #REF http://sql-info.de/mysql/examples/CREATE-TABLE-examples.html
 
 #			android.provider.BaseColumns._ID,	// 0
