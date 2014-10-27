@@ -9,7 +9,12 @@ class Store extends AppModel {
 			'Si' => array(
 						
 					'className' => 'Si'
-			)
+			),
+				
+			'PurHistory' => array(
+						
+					'className' => 'PurHistory'
+			),
 				
 	);
 	

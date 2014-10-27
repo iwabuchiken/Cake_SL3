@@ -16,7 +16,68 @@ purhistory
   </tr>
   <tr>
     <td class="td_label_narrow">Store</td>
-    <td class="td_value_mideum"><?php echo $purhistory['PurHistory']['store_id']; ?></td>
+    
+    <td class="td_value_mideum">
+    
+    	<?php 
+    	
+    		$store = $this->PurHistory->get_Store_From_Local_StoreId(
+    				
+	    			$purhistory['PurHistory']['store_id']
+	    	
+	    	);
+    	 
+			if ($store != null) {
+				// 				if ($store_name != null) {
+			
+				$msg = $store['Store']['name'];
+
+				echo $this->Html->link($msg,
+						array(
+								'controller' => 'stores',
+								'action' => 'view',
+								$store['Store']['id'])
+				);
+				
+// 				debug($store);
+				
+			} else {
+			
+				$msg = "ID = ".$purhistory['PurHistory']['store_id'];
+					
+				echo $msg;
+				
+			}
+
+// 			echo $this->Html->link($msg,
+// 					array(
+// 							'controller' => 'stores',
+// 							'action' => 'view',
+// 							$purhistory['Store']['id'])
+// 			);
+
+// 			echo $msg;
+			
+//     		echo $purhistory['PurHistory']['store_id']; 
+    		
+    	?>
+    	
+    </td>
+    
+  </tr>
+  
+  <tr>
+    <td class="td_label_narrow">Items</td>
+    
+    <td class="td_value_mideum">
+    
+    		<?php 
+    		
+    			echo $purhistory['PurHistory']['items']; 
+    			
+    		?>
+    		
+    </td>
   </tr>
   
   <tr>

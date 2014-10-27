@@ -46,6 +46,7 @@
 // 	echo $this->Form->create('Store', $opt_form);
 	echo $this->Form->create('Store');
 	echo $this->Form->input('name', $opt_input);
+	echo $this->Form->input('local_id', $opt_input);
 // 	echo $this->Form->input('code', $opt_input);
 	echo $this->Form->end('Save Store');
 	

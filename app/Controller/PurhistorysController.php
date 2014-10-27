@@ -10,7 +10,14 @@ class PurHistorysController extends AppController {
 	public $helpers = array('Html', 'Form');
 
 	public function index() {
-		$this->set('purhistorys', $this->PurHistory->find('all'));
+		
+		$purhistorys = $this->PurHistory->find('all');
+		
+		$this->set('purhistorys', $purhistorys);
+// 		$this->set('purhistorys', $this->PurHistory->find('all'));
+		
+// 		debug($purhistorys[0]);
+		
 	}
 	
 	public function view($id = null) {
@@ -23,6 +30,8 @@ class PurHistorysController extends AppController {
 			throw new NotFoundException(__('Invalid purhistory'));
 		}
 		$this->set('purhistory', $purhistory);
+		
+// 		debug($purhistory);
 	}
 
 	public function add() {

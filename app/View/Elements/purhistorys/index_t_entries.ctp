@@ -23,12 +23,58 @@ PurHistory
 		</td>
 		
 		<td>
-			<?php 
-				echo $purhistory['PurHistory']['store_id'];
+			<?php
+
+				$store = $this->PurHistory->get_Store_From_Local_StoreId(
+									
+						$purhistory['PurHistory']['store_id']
+						
+				);
+				
+// 				$store_name = $purhistory['Store']['name'];
+
+				if ($store != null) {
+					// 				if ($store_name != null) {
+						
+					$msg = $store['Store']['name'];
+				
+					echo $this->Html->link($msg,
+							array(
+									'controller' => 'stores',
+									'action' => 'view',
+									$store['Store']['id'])
+					);
+				
+					// 				debug($store);
+				
+				} else {
+						
+					$msg = "ID = ".$purhistory['PurHistory']['store_id'];
+						
+					echo $msg;
+				
+				}
+				
+// 				if ($store != null) {
+// // 				if ($store_name != null) {
+
+// 					echo $store['Store']['name'];
+					
+// 				} else {
+
+// 					echo $purhistory['PurHistory']['store_id'];;
+					
+// 				}
+				
+			
+// 				echo $purhistory['Store']['name'];
+// 				echo $purhistory['PurHistory']['store_id'];
 			?>
 		</td>
 		
 		<td><?php echo $purhistory['PurHistory']['items']; ?></td>
+		
+		<td><?php echo $purhistory['PurHistory']['amount']; ?></td>
 		
 		<td><?php echo $purhistory['PurHistory']['created_at']; ?></td>
 		<td><?php echo $purhistory['PurHistory']['updated_at']; ?></td>
