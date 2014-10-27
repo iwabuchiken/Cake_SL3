@@ -180,5 +180,38 @@ class StoresController extends AppController {
 		}
 	
 	}//delete_all
+
+	public function
+	add_from_remote() {
+		if ($this->request->is('post')) {
+	
+			$this->Store->create();
+	
+			$this->request->data['Store']['created_at'] =
+			Utils::get_CurrentTime();
+			// 			Utils::get_CurrentTime2(CONS::$timeLabelTypes["rails"]);
+	
+			$this->request->data['Store']['updated_at'] =
+			Utils::get_CurrentTime();
+			// 			Utils::get_CurrentTime2(CONS::$timeLabelTypes["rails"]);
+	
+			if ($this->Store->save($this->request->data)) {
+	
+				$this->Session->setFlash(__('Your store has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+	
+			}
+	
+			$this->Session->setFlash(__('Unable to add your store.'));
+	
+		}
+	
+		// 		} else if ($this->request->is('get')) {
+	
+		// 			$this->Session->setFlash(__('Sorry. GET method is not available'));
+			
+		// 		}//if ($this->request->is('post'))
+	
+	}//add
 	
 }

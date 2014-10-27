@@ -180,5 +180,38 @@ class StoresController extends AppController {
 		}
 	
 	}//delete_all
+
+	public function
+	add_from_remote() {
+		if ($this->request->is('post')) {
+	
+			$this->PurHistory->create();
+	
+			$this->request->data['PurHistory']['created_at'] =
+			Utils::get_CurrentTime();
+			// 			Utils::get_CurrentTime2(CONS::$timeLabelTypes["rails"]);
+	
+			$this->request->data['PurHistory']['updated_at'] =
+			Utils::get_CurrentTime();
+			// 			Utils::get_CurrentTime2(CONS::$timeLabelTypes["rails"]);
+	
+			if ($this->PurHistory->save($this->request->data)) {
+	
+				$this->Session->setFlash(__('Your purhistory has been saved.'));
+				return $this->redirect(array('action' => 'index'));
+	
+			}
+	
+			$this->Session->setFlash(__('Unable to add your purhistory.'));
+	
+		}
+	
+		// 		} else if ($this->request->is('get')) {
+	
+		// 			$this->Session->setFlash(__('Sorry. GET method is not available'));
+			
+		// 		}//if ($this->request->is('post'))
+	
+	}//add
 	
 }
