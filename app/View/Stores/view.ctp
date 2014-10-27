@@ -1,29 +1,34 @@
-<h1><?php echo h($genre['Genre']['name']); ?></h1>
+<h1><?php echo h($store['Store']['name']); ?></h1>
 
 <table class="table_show">
   <tr>
     <td class="td_label_narrow">ID</td>
-    <td class="td_value_mideum"><?php echo $genre['Genre']['id']; ?></td>
+    <td class="td_value_mideum"><?php echo $store['Store']['id']; ?></td>
   </tr>
   <tr>
     <td class="td_label_narrow">name</td>
-    <td class="td_value_mideum"><?php echo $genre['Genre']['name']; ?></td>
+    <td class="td_value_mideum"><?php echo $store['Store']['name']; ?></td>
+  </tr>
+  
+  <tr>
+    <td class="td_label_narrow">Local ID</td>
+    <td class="td_value_mideum"><?php echo $store['Store']['local_id']; ?></td>
   </tr>
   
   <tr>
     <td class="td_label_narrow">Created at</td>
-    <td class="td_value_mideum"><?php echo $genre['Genre']['name']; ?></td>
+    <td class="td_value_mideum"><?php echo $store['Store']['created_at']; ?></td>
   </tr>
   
 </table>
 
 <p>
 	<?php echo $this->Html->link(
-					'Delete Genre',
+					'Delete Store',
 					array(
-							'controller' => 'genres', 
+							'controller' => 'stores', 
 							'action' => 'delete', 
-							$genre['Genre']['id']
+							$store['Store']['id']
 					),
 					array(
 							// 							'style'	=> 'color: blue'
@@ -31,7 +36,7 @@
 					),
 						
 					//REF http://stackoverflow.com/questions/22519966/cakephp-delete-confirmation answered Mar 19 at 23:18
-					__("Delete? => %s", $genre['Genre']['name'])
+					__("Delete? => %s", $store['Store']['name'])
 	
 				);
 	?>

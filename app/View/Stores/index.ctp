@@ -23,6 +23,22 @@ store
 							); 
 ?>
 
+<br>
+<br>
+
+<?php 
+
+	echo $this->Html->link(
+				    'Delete all',
+				    array('controller' => 'stores', 'action' => 'delete_all'),
+					null,
+					__("Delete all stores?")
+	); 
+
+?>
+
+<br>
+<br>
 
 (<a href="#top">Top</a><a name="bottom"></a>)
 
