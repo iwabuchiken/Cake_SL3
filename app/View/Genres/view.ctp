@@ -11,8 +11,13 @@
   </tr>
   
   <tr>
+    <td class="td_label_narrow">Local Id</td>
+    <td class="td_value_mideum"><?php echo $genre['Genre']['local_id']; ?></td>
+  </tr>
+  
+  <tr>
     <td class="td_label_narrow">Created at</td>
-    <td class="td_value_mideum"><?php echo $genre['Genre']['name']; ?></td>
+    <td class="td_value_mideum"><?php echo $genre['Genre']['created_at']; ?></td>
   </tr>
   
 </table>
