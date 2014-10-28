@@ -185,24 +185,24 @@ class GenresController extends AppController {
 	add_from_remote() {
 		if ($this->request->is('post')) {
 	
-			$this->PurHistory->create();
+			$this->Genre->create();
 	
-			$this->request->data['PurHistory']['created_at'] =
+			$this->request->data['Genre']['created_at'] =
 			Utils::get_CurrentTime();
 			// 			Utils::get_CurrentTime2(CONS::$timeLabelTypes["rails"]);
 	
-			$this->request->data['PurHistory']['updated_at'] =
+			$this->request->data['Genre']['updated_at'] =
 			Utils::get_CurrentTime();
 			// 			Utils::get_CurrentTime2(CONS::$timeLabelTypes["rails"]);
 	
-			if ($this->PurHistory->save($this->request->data)) {
+			if ($this->Genre->save($this->request->data)) {
 	
-				$this->Session->setFlash(__('Your purhistory has been saved.'));
+				$this->Session->setFlash(__('Your genre has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 	
 			}
 	
-			$this->Session->setFlash(__('Unable to add your purhistory.'));
+			$this->Session->setFlash(__('Unable to add your genre.'));
 	
 		}
 	

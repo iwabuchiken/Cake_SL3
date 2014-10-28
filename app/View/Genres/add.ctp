@@ -43,6 +43,7 @@
 	
 	}
 	
+// 	echo $this->Form->create('Genre', $opt_form);	// testing "add_from_remote"
 	echo $this->Form->create('Genre');
 	echo $this->Form->input('name', $opt_input);
 	echo $this->Form->input('local_id', $opt_input);
