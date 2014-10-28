@@ -10,7 +10,7 @@
 							); ?>
 		</td>
 		
-		<td class="td_news_time"><?php echo $genre['Genre']['code']; ?></td>
+		<td class="td_news_time"><?php echo $genre['Genre']['local_id']; ?></td>
 		
 		<td class="td_news_time"><?php echo $genre['Genre']['created_at']; ?></td>
 		<td class="td_news_time"><?php echo $genre['Genre']['updated_at']; ?></td>

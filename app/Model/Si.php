@@ -10,6 +10,9 @@ class Si extends AppModel {
 	public $belongsTo = array(
 			'Store' => array(
 					'className'    => 'Store',
+			),
+			'Genre' => array(
+					'className'    => 'Genre',
 			)
 	);
 	

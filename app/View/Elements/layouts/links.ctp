@@ -37,6 +37,17 @@
 			
 		</td>
 	
+		<td>
+		
+			<?php echo $this->Html->link(
+								'Genres',
+								array('controller' => 'genres', 
+										'action' => 'index'),
+								array('class' => "button"));
+			?>
+			
+		</td>
+	
 	</tr>
 
 </table>

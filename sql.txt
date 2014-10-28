@@ -4,6 +4,7 @@ sqlite3 C:\WORKS\WS\Eclipse_Kepler\Cake_SL3\app\webroot\development.sqlite3
 .explain on
 .tables
 
+pragma table_info(genres);
 pragma table_info(sis);
 pragma table_info(stores);
 pragma table_info(pur_histories);
@@ -11,6 +12,22 @@ pragma table_info(pur_histories);
 .exit
 
 [sqlite3]======================================
+DROP TABLE genres;
+
+CREATE TABLE genres (
+
+	id			INTEGER PRIMARY KEY     AUTOINCREMENT	NOT NULL,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+
+	local_id	INTEGER,
+	local_created_at	VARCHAR(30),
+	local_updated_at	VARCHAR(30),
+	
+	name		VARCHAR(30)
+
+);
+
 DROP TABLE stores;
 
 CREATE TABLE stores (
@@ -120,6 +137,22 @@ CREATE TABLE admins (
 );
 
 [mysql(lollipop)]======================================
+
+DROP TABLE genres;
+
+CREATE TABLE genres (
+
+	id			INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	created_at	VARCHAR(30),
+	updated_at	VARCHAR(30),
+
+	local_id	INTEGER,
+	local_created_at	VARCHAR(30),
+	local_updated_at	VARCHAR(30),
+	
+	name		VARCHAR(30)
+
+);
 
 DROP TABLE stores;
 

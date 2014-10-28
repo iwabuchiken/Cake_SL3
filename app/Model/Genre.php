@@ -6,9 +6,9 @@ class Genre extends AppModel {
 
 	var $hasMany = array(
 				
-			'Category' => array(
+			'Si' => array(
 						
-					'className' => 'Category'
+					'className' => 'Si'
 			)
 				
 	);
