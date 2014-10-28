@@ -1,7 +1,7 @@
 <?php
 //REF http://www.programmersvilla.com/forums/topic/how-to-create-custom-helper-in-cakephp/
 
-class PurHistoryHelper extends AppHelper{
+class SiHelper extends AppHelper{
 	
 	public function 
 	get_Genre_From_HistoryID
