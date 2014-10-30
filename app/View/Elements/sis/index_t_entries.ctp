@@ -95,6 +95,8 @@ Si
 		
 		<td><?php echo $si['Si']['num']; ?></td>
 		
+		<td><?php echo $si['Si']['local_id']; ?></td>
+		
 		<td><?php echo $si['Si']['created_at']; ?></td>
 		<td><?php echo $si['Si']['updated_at']; ?></td>
 		

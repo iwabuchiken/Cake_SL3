@@ -8,6 +8,8 @@
 		<th>Price</th>
 		<th>Num</th>
 		
+		<th>Local Id</th>
+		
 		<th>Created at</th>
 		<th>updated at</th>
 		

@@ -84,11 +84,15 @@
 	
 // 	echo $this->Form->create('Si', $opt_form);
 	echo $this->Form->create('Si');
+	
 	echo $this->Form->input('name', $opt_input_name);
 	echo $this->Form->input('store_id', $opt_input_store_id);
 	echo $this->Form->input('genre_id', $opt_input_genre_id);
 	echo $this->Form->input('price', $opt_input_price);
 	echo $this->Form->input('num', $opt_input_num);
+	
+	echo $this->Form->input('local_id', $opt_input_num);
+	
 	echo $this->Form->end('Save Si');
 	
 ?>

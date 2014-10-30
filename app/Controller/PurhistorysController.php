@@ -15,6 +15,35 @@ class PurHistorysController extends AppController {
 		
 		$this->set('purhistorys', $purhistorys);
 // 		$this->set('purhistorys', $this->PurHistory->find('all'));
+
+// 		/**********************************
+// 		* test
+// 		**********************************/
+// 		$hist = $purhistorys[0];
+		
+// 		$items_str = $hist['PurHistory']['items'];
+		
+// 		$items_ary = explode(" ", $items_str);
+		
+// 		$items_1 = $items_ary[0];
+		
+// 		debug($items_1);
+		
+// 		$items_1_ary = explode(",", $items_1);
+		
+// 		debug($items_1_ary);
+		
+// 		$items_1_id = $items_1_ary[0];
+		
+// 		debug($items_1_id);
+		
+// 		$si = $this->get_Si_from_LocalId($items_1_id);
+		
+// 		debug($si);
+		
+// 		debug($items_str);
+		
+// 		debug(explode(" ", $items_str));
 		
 // 		debug($purhistorys[0]);
 		
@@ -222,5 +251,132 @@ class PurHistorysController extends AppController {
 		// 		}//if ($this->request->is('post'))
 	
 	}//add
+
+	public function
+	get_Si_from_LocalId
+	($local_id) {
+
+		$this->loadModel('Si');
+		
+		$conditions = array(
+				'conditions' => 
+						array('Si.local_id' => $local_id)
+		);
+		
+		$si = $this->Si->find('first', $conditions);
+
+		return $si;
+		
+	}//get_Si_from_LocalId
+
+	public function
+	get_SiList_from_Items() {
+
+		/**********************************
+		* vars
+		**********************************/
+		$si_list = array();
+		
+		$data = $this->request->query;
+// 		$data = $this->request->data;
+		
+// 		debug($data);
+		
+		@$items_str = $data['items'];
+		
+		if ($items_str != null) {
+			
+// 			debug("items => ".$items_str);
+			
+			$si_list = $this->_conv_Items_Str_to_Si_List($items_str);
+			
+// 			/**********************************
+// 			* report
+// 			**********************************/
+// 			if ($si_list == null) {
+// 				debug("si_list => null");
+// 			} else {
+				
+// 				debug("si_list => ".count($si_list));
+				
+// 				debug($si_list);
+				
+// 			}
+			
+		} else {
+			
+// 			debug("items => null");
+			
+			$si_list = null;
+			
+		}
+		
+		$this->set("si_list", $si_list);
+		
+		$this->render("index/_inTable_Si_List", "plain_1");
+		
+	}//get_SiList_from_Items
 	
-}
+	public function
+	_conv_Items_Str_to_Si_List
+	($items_str) {
+		/**********************************
+		* vars
+		**********************************/
+		$si_list = array();
+		
+		/**********************************
+		* tokenize
+		**********************************/
+		$items_ary = explode(" ", $items_str);
+		
+// 		debug($items_ary);
+		
+		/**********************************
+		* token => null or 0
+		**********************************/
+		if ($items_ary == null || count($items_ary) < 1) {
+			
+			return null;
+			
+		}
+		
+		/**********************************
+		* 
+		**********************************/
+		foreach ($items_ary as $item) {
+			
+			$item_ary = explode(",", $item);	// [12, 1]
+// 			$item_ary = explode(" ", $item);	// [12, 1]
+			
+// 			debug($item_ary);
+			
+			// token => null or 0
+			if ($item_ary == null || count($item_ary) < 1) {
+					
+				continue;
+					
+			}
+			
+			$local_id = $item_ary[0];
+			
+			$si = $this->get_Si_from_LocalId($local_id);
+			
+			// validate
+			if ($si == null) {
+				
+				continue;
+				
+			} else {
+				
+				array_push($si_list, $si);
+				
+			}
+			
+		}//foreach ($items_ary as $item)
+
+		return $si_list;
+		
+	}//_conv_Items_Str_to_Si_List
+	
+}//class PurHistorysController extends AppController
