@@ -5,7 +5,16 @@
 <!-- * si -->
 <!-- */ -->
 
-<h1>SIs (<a href="#bottom">Bottom</a><a name="top"></a>)</h1>
+<h1>
+
+	SIs (<a href="#bottom">Bottom</a><a name="top"></a>)
+	
+	(total = <?php echo $num_of_sis; ?>, pages = <?php echo $num_of_pages; ?>)
+	
+</h1>
+
+<?php echo $this->element('sis/_index_pagination')?>
+
 <table>
 
 	<?php echo $this->element('sis/index_t_headers'); ?>

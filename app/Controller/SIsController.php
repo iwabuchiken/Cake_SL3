@@ -10,8 +10,42 @@ class SisController extends AppController {
 // class SisController extends AppController {
 	public $helpers = array('Html', 'Form');
 
+	public $components = array('Paginator');
+	
 	public function index() {
-		$this->set('sis', $this->Si->find('all'));
+		
+		/**********************************
+		 * paginate
+		**********************************/
+		$page_limit = 10;
+		
+		$opt_order = array(
+		// 						'Token.id' => 'asc',
+				'Si.id' => 'asc',
+		
+		);
+		
+		$opt_conditions = '';
+		
+		$this->paginate = array(
+				// 					'conditions' => array('Image.file_name LIKE' => "%$filter_TableName%"),
+				// 				'conditions' => array('Image.memos LIKE' => "%$filter_TableName%"),
+				'limit' => $page_limit,
+				'order' => $opt_order,
+				'conditions'	=> $opt_conditions
+				// 				'order' => array(
+				// 						'id' => 'asc'
+				// 				)
+		);
+		
+		$this->set('sis', $this->paginate('Si'));
+		
+		$num_of_sis = count($this->Si->find('all'));
+		$this->set('num_of_sis', $num_of_sis);
+		
+		$this->set('num_of_pages', (int) ceil($num_of_sis / $page_limit));
+		
+// 		$this->set('sis', $this->Si->find('all'));
 	}
 	
 	public function view($id = null) {
