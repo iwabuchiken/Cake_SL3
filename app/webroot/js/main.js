@@ -76,24 +76,49 @@ _add_KW__Genre_Changed__Done(data, status, xhr) {
 
 function
 modify_content
-(history_id) {
-	
+(history_id, td_id) {
+
+	/***********************
+		prep: values
+	 ***********************/
 	var hostname = window.location.hostname;
 
-	alert(hostname);
+//	alert(hostname + " / " + history_id);
 	
 	var url;
 	
 	if (hostname == "benfranklin.chips.jp") {
 		
-		url = "/cake_apps/Cake_NR5/historys/content_multilines?id=" + history_id;
+		url = "/cake_apps/Cake_SL3/purhistorys/get_SiList_from_Items"
+				+ "?items=" 
+				+ history_id;
+//		url = "/cake_apps/Cake_NR5/historys/content_multilines?id=" + history_id;
 		
 	} else {
 	
-		url = "/Cake_NR5/historys/content_multilines?id=" + history_id;
+		url = "/Cake_SL3/purhistorys/get_SiList_from_Items"
+			+ "?items=" 
+			+ history_id;
+		
+//		url = "/Cake_NR5/historys/content_multilines?id=" + history_id;
 	
 	}
 	
+//	alert("url => " + url);
+
+	/***********************
+		change bg
+	 ***********************/
+	$("td#" + td_id).css("background-color", "yellow");
+	
+//	/***********************
+//		change: id
+//	 ***********************/
+//	$("td#" + td_id).attr("id", td_id + "_done");
+	
+	/***********************
+		execute
+	 ***********************/
 	$.ajax({
 		
 	    url: url,
@@ -105,11 +130,28 @@ modify_content
 	    
 	}).done(function(data, status, xhr) {
 		
+//		alert(data);
 	//	alert(conv_Float_to_TimeLabel(data.point));
 	//	addPosition_ToList(data.point);
 		
 //		_delete_position_Ajax__Done(data, status, xhr);
-		_modify_content__Done(data, status, xhr);
+
+		/***********************
+			change bg
+		 ***********************/
+		$("td#" + td_id).css("background-color", "white");
+
+//		/***********************
+//			change: id
+//		 ***********************/
+//		$("td#" + td_id).attr("id", td_id + "_done");
+
+//		/***********************
+//			change: id
+//		 ***********************/
+//		$("td#" + td_id + "_done").attr("id", td_id + "_done");
+		
+		_modify_content__Done(data, status, xhr, td_id);
 		
 	}).fail(function(xhr, status, error) {
 		
@@ -121,15 +163,23 @@ modify_content
 
 function
 _modify_content__Done
-(data, status, xhr) {
+(data, status, xhr, td_id) {
 
-	alert("Ajax => done");
+//	alert("Ajax => done");
 //	alert(data);
 	
-	$("td#history_content").html(data);
-//	$("td#history_content").text(data);
+	$("td#" + td_id).append("<br>");
+	$("td#" + td_id).append(data);
 	
-//	alert($("td#history_content").text());
+	/***********************
+		change: id
+	 ***********************/
+	$("td#" + td_id).attr("id", td_id + "_done");
+
+//	$("td#" + td_id + "_done").append("<br>");
+//	$("td#" + td_id + "_done").append(data);
+//	$("td#td_items").append(data);
+//	$("td#history_content").html(data);
 	
 	
 }//_modify_content__Done

@@ -388,6 +388,20 @@ table#table_poslist tr td.pos_chosen {
 	
 }
 
+/*table#inTable_Si_List {*/
+table#inTable_Si_List tr td {
+
+	border:		1px solid blue;
+	margin-top:	100px;
+	
+}
+
+table#inTable_Si_List {
+
+	margin-top:	8px;
+	
+}
+
 img.delete_position {
 	
 /*	border: 1px solid blue;*/

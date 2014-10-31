@@ -72,12 +72,34 @@ PurHistory
 			?>
 		</td>
 		
-		<td><?php echo $purhistory['PurHistory']['items']; ?></td>
+		<td id="td_items_<?php echo $purhistory['PurHistory']['id']?>">
+			<span 
+    			 
+    			onclick='modify_content(
+    				"<?php echo $purhistory['PurHistory']['items']?>",
+    				"td_items_<?php echo $purhistory['PurHistory']['id']?>"
+    				)'
+    			
+    			style="text-decoration:underline"
+    		>
+    			
+    					<?php echo $purhistory['PurHistory']['items'] ?>
+    					
+    		</span>
+    		
+			<?php 
+			
+			
+// 				echo $purhistory['PurHistory']['items']; 
+				
+			?>
+			
+		</td>
 		
 		<td><?php echo $purhistory['PurHistory']['amount']; ?></td>
 		
+		<td><?php echo $purhistory['PurHistory']['local_created_at']; ?></td>
 		<td><?php echo $purhistory['PurHistory']['created_at']; ?></td>
-		<td><?php echo $purhistory['PurHistory']['updated_at']; ?></td>
 		
 </tr>
 <?php endforeach; ?>
