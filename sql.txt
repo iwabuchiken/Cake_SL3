@@ -28,6 +28,8 @@ CREATE TABLE genres (
 
 );
 
+-----------------------------------------------------
+
 DROP TABLE stores;
 
 CREATE TABLE stores (
@@ -52,6 +54,8 @@ CREATE TABLE stores (
 #			"amount",							// 6
 #			"memo",								// 7
 #			"posted_at"							// 8
+
+-----------------------------------------------------
 
 DROP TABLE pur_histories;
 
@@ -85,6 +89,20 @@ CREATE TABLE pur_histories (
 #			
 #			"posted_at"							// 9
 
+DROP TABLE pur_history;
+DROP TABLE pur_history_old;
+
+#REF http://stackoverflow.com/questions/4253804/insert-new-column-into-table-in-sqlite answered Nov 23 '10 at 7:59
+ALTER TABLE pur_history RENAME TO pur_history_old;
+
+INSERT INTO pur_history
+		() 
+	SELECT
+		
+	FROM pur_history_old;
+
+-----------------------------------------------------
+
 DROP TABLE sis;
 
 CREATE TABLE sis (
@@ -108,6 +126,8 @@ CREATE TABLE sis (
 	
 );
 
+-----------------------------------------------------
+
 DROP TABLE users;
 
 CREATE TABLE users (
@@ -121,7 +141,7 @@ CREATE TABLE users (
 	
 );
 
-
+-----------------------------------------------------
 
 DROP TABLE admins;
 
@@ -154,6 +174,8 @@ CREATE TABLE genres (
 
 );
 
+-----------------------------------------------------
+
 DROP TABLE stores;
 
 CREATE TABLE stores (
@@ -180,6 +202,8 @@ CREATE TABLE stores (
 #			"amount",							// 6
 #			"memo",								// 7
 #			"posted_at"							// 8
+
+-----------------------------------------------------
 
 DROP TABLE pur_histories;
 
@@ -212,6 +236,8 @@ CREATE TABLE pur_histories (
 #			"genre", "yomi", "num",				// 6,7,8
 #			
 #			"posted_at"							// 9
+
+-----------------------------------------------------
 
 DROP TABLE sis;
 

@@ -10,11 +10,14 @@ class PurHistorysController extends AppController {
 	public $helpers = array('Html', 'Form');
 
 	public function index() {
+
+		$this->_index_BuildData_from_SQLite_File();
+		
 		
 		$purhistorys = $this->PurHistory->find('all');
 		
 		$this->set('purhistorys', $purhistorys);
-// 		$this->set('purhistorys', $this->PurHistory->find('all'));
+// // 		$this->set('purhistorys', $this->PurHistory->find('all'));
 
 // 		/**********************************
 // 		* test
@@ -49,7 +52,109 @@ class PurHistorysController extends AppController {
 		
 	}
 	
-	public function view($id = null) {
+	public function 
+	_index_BuildData_from_SQLite_File() {
+		
+		/*******************************
+			open PDO
+		*******************************/
+		$pdo = Utils::pdo_Get_PDO();
+// 		$pdo = $this->_index_Get_PDO();
+
+		/*******************************
+			validate: null
+		*******************************/
+		if ($pdo === null) {
+			
+			debug("file_db => null");
+			
+			return ;
+			
+		}//$pdo === null
+
+		/*******************************
+			setup
+		*******************************/
+		// Set errormode to exceptions
+		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			
+		/*******************************
+			table: purhistorys
+		*******************************/
+		$tname = "pur_history";
+		
+// 		if ($_SERVER['SERVER_NAME'] == CONS::$name_Server_Local) {
+		
+// 			$tname = "pur_history";
+// 			// 			$fpath .= "C:\\WORKS\\WS\\Eclipse_Luna\\Cake_TA2\\app\\Lib\\data\\sl3_backup_20151011_231723.bk";
+		
+// 		} else {
+		
+// 			$tname = "pur_histories";
+		
+// 		}//if ($_SERVER['SERVER_NAME'] == CONS::$name_Server_Local)
+		
+		//ref http://stackoverflow.com/questions/669092/sqlite-getting-number-of-rows-in-a-database answered Mar 21 '09 at 10:37
+		$pur_histories = $pdo->query("SELECT Count(*) FROM $tname");
+// 		$pur_histories = $file_db->query('SELECT Count(*) FROM ta2');
+		
+		//ref http://stackoverflow.com/questions/883365/row-count-with-pdo answered May 19 '09 at 15:16
+		$cnt_PurHistories = $pur_histories->fetchColumn();	//=> w
+			
+		debug("cnt_Tweets => ".$cnt_PurHistories);
+		
+		
+		/*******************************
+			pdo: close
+		*******************************/
+		$pdo = null;
+		
+	}//_index_BuildData_from_SQLite_File()
+	
+	public function 
+	_index_Get_PDO() {
+
+		if ($_SERVER['SERVER_NAME'] == CONS::$name_Server_Local) {
+		
+			$fdir = "C:\\WORKS\\WS\\Eclipse_Luna\\Cake_SL3\\app\\Lib\\data";
+			// 			$fpath .= "C:\\WORKS\\WS\\Eclipse_Luna\\Cake_TA2\\app\\Lib\\data\\sl3_backup_20151011_231723.bk";
+		
+		} else {
+		
+			$fdir = "/home/users/2/chips.jp-benfranklin/web/android_app_data/SL3/db";
+		
+		}//if ($_SERVER['SERVER_NAME'] == CONS::$name_Server_Local)
+		
+		$fname = Utils::get_Latest_File__By_FileName($fdir);
+		
+		$fpath = "$fdir\\$fname";
+		
+			// 		debug($fname);
+		
+		
+			// 		$fpath = "http://benfranklin.chips.jp/android_app_data/SL3/db/sl3_backup_20151011_231723.bk";
+			// 		$fname = "http://benfranklin.chips.jp/FM/Research_2/Research_2.mm";
+		
+		$file_db = new PDO("sqlite:$fpath");
+			
+		if ($file_db === null) {
+		
+			debug("pdo => null");
+		
+			return null;
+		
+		} else {
+				
+			debug("pdo => opened: $fpath");
+			
+			return $file_db;
+				
+		}
+		
+	}//_index_Get_PDO()
+	
+	public function 
+	view($id = null) {
 		if (!$id) {
 			throw new NotFoundException(__('Invalid purhistory'));
 		}
@@ -225,19 +330,35 @@ class PurHistorysController extends AppController {
 	
 			$this->PurHistory->create();
 	
-			$this->request->data['PurHistory']['created_at'] =
-										Utils::get_CurrentTime();
+			$time = Utils::get_CurrentTime();
+			
+			$this->request->data['PurHistory']['created_at'] = $time;
+// 										Utils::get_CurrentTime();
 // 			Utils::get_CurrentTime2(CONS::$timeLabelTypes["rails"]);
 	
-			$this->request->data['PurHistory']['updated_at'] =
-										Utils::get_CurrentTime();
+			$this->request->data['PurHistory']['updated_at'] = $time;
+// 										Utils::get_CurrentTime();
 // 			Utils::get_CurrentTime2(CONS::$timeLabelTypes["rails"]);
 	
 			if ($this->PurHistory->save($this->request->data)) {
-	
+
+				Utils::write_Log(
+					Utils::get_dPath_Log(),
+					"PurHistory => saved: ".$time,
+					__FILE__, __LINE__
+				);
+				
 				$this->Session->setFlash(__('Your purhistory has been saved.'));
 				return $this->redirect(array('action' => 'index'));
 	
+			} else {
+
+				Utils::write_Log(
+						Utils::get_dPath_Log(),
+						"PurHistory => NOT saved: ".$time,
+						__FILE__, __LINE__
+				);
+				
 			}
 	
 			$this->Session->setFlash(__('Unable to add your purhistory.'));

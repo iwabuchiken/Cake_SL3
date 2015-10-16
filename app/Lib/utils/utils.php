@@ -593,6 +593,125 @@
 // 			return true;
 			
 		}//isKanji_All
+
+		public static function
+		get_Latest_File__By_FileName($fpath) {
+		
+			/*******************************
+			 dir list
+			*******************************/
+			//REF array_values http://stackoverflow.com/questions/7536961/reset-php-array-index Jeremy Banks♦
+			//REF scan dir http://php.net/manual/en/function.scandir.php#107215
+			$scanned_directory = array_values(array_diff(scandir($fpath), array('..', '.')));
+		
+			/*******************************
+			 validate: any entry
+			*******************************/
+			if (count($scanned_directory) < 1) {
+		
+				//debug
+				$msg = "dir list => no entry";
+		
+				Utils::write_Log(
+						Utils::get_dPath_Log(),
+						$msg,
+						__FILE__, __LINE__);
+		
+				return null;
+		
+			}
+				
+			/*******************************
+			 get: the latest
+			*******************************/
+			/*******************************
+			 1 entry, only
+			*******************************/
+			if (count($scanned_directory) == 1) {
+		
+				return $scanned_directory[0];
+		
+			}
+				
+			/*******************************
+			 2 or more
+			*******************************/
+			$tmp_fname = $scanned_directory[0];
+				
+			$len = count($scanned_directory);
+				
+			for ($i = 1; $i < $len; $i++) {
+		
+				if (strcmp($tmp_fname, $scanned_directory[$i]) < 0) {
+						
+					$tmp_fname = $scanned_directory[$i];
+						
+				}
+		
+			}
+				
+			// 			debug("latest => ".$tmp_fname);
+				
+			/*******************************
+			 return
+			*******************************/
+			return $tmp_fname;
+				
+		}//get_Latest_File__By_FileName($fpath)
+
+		public static function
+		pdo_Get_PDO() {
+		
+			if ($_SERVER['SERVER_NAME'] == CONS::$name_Server_Local) {
+		
+				$fdir = "C:\\WORKS\\WS\\Eclipse_Luna\\Cake_SL3\\app\\Lib\\data";
+				// 			$fpath .= "C:\\WORKS\\WS\\Eclipse_Luna\\Cake_TA2\\app\\Lib\\data\\sl3_backup_20151011_231723.bk";
+		
+			} else {
+		
+				$fdir = "/home/users/2/chips.jp-benfranklin/web/android_app_data/SL3/db";
+		
+			}//if ($_SERVER['SERVER_NAME'] == CONS::$name_Server_Local)
+		
+			$fname = Utils::get_Latest_File__By_FileName($fdir);
+		
+// 			$fpath = "$fdir\\$fname";
+			if ($_SERVER['SERVER_NAME'] == CONS::$name_Server_Local) {
+			
+				$fpath = "$fdir\\$fname";
+				// 			$fpath .= "C:\\WORKS\\WS\\Eclipse_Luna\\Cake_TA2\\app\\Lib\\data\\sl3_backup_20151011_231723.bk";
+			
+			} else {
+			
+				$fpath = "$fdir/$fname";
+			
+			}//if ($_SERVER['SERVER_NAME'] == CONS::$name_Server_Local)
+					
+		
+			// 		debug($fname);
+		
+		
+			// 		$fpath = "http://benfranklin.chips.jp/android_app_data/SL3/db/sl3_backup_20151011_231723.bk";
+			// 		$fname = "http://benfranklin.chips.jp/FM/Research_2/Research_2.mm";
+		
+			$file_db = new PDO("sqlite:$fpath");
+				
+			if ($file_db === null) {
+		
+				debug("pdo => null");
+		
+				return null;
+		
+			} else {
+		
+				debug("pdo => opened: $fpath");
+					
+				return $file_db;
+		
+			}
+		
+		}//pdo_Get_PDO
+		
 		
 	}//class Utils
 	

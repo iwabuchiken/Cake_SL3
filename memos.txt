@@ -56,8 +56,10 @@ pushd C:\WORKS\WORKSPACES_ANDROID\GIMP\Icons
 [sqlite3]
 pushd C:\Users\IwabuchiKen\Desktop
 
-sqlite3 C:\WORKS\WS\Eclipse_Kepler\VM_Cake\app\webroot\development.sqlite3
+sqlite3 C:\WORKS\WS\Eclipse_Luna\Cake_SL3\app\Lib\data\sl3_backup_20151011_231723.bk
 .explain on
+.tables
+
 pragma table_info(videos);
 
 .tables

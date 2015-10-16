@@ -2,6 +2,14 @@
 
 class CONS {
 
+	/*******************************
+	 server
+	*******************************/
+	public static $name_Server_Remote = "benfranklin.chips.jp";
+	
+	public static $name_Server_Local = "localhost";
+	
+	
 	/******************************
 	
 		Paths and names
